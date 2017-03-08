@@ -1,18 +1,17 @@
 package com.fourdea.a360viewerdemoapp;
 
-import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
-import com.fourdea.viewerlibrary.Listeners.ViewerListeners.PanoramaCallBackListener;
+import com.fourdea.a360viewerdemoapp.PanoramaHelpers.MyPanoramaHelper;
+import com.fourdea.a360viewerdemoapp.PanoramaHelpers.VtourCallBackListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements PanoramaCallBackListener, ThumbnailListener {
+public class MainActivity extends AppCompatActivity implements VtourCallBackListener, ThumbnailListener {
 
     MyPanoramaHelper myPanoramaHelper;
 
@@ -142,5 +141,30 @@ public class MainActivity extends AppCompatActivity implements PanoramaCallBackL
     @Override
     public String getThumbUrl(int sceneNum) throws Exception {
         return myPanoramaHelper.getThumbnailUrl(sceneNum);
+    }
+
+    @Override
+    public long getAutoPlayDuration() {
+        return 0;
+    }
+
+    @Override
+    public String getTourDataPath() {
+        return "HotelSwaroopvilas_Udaipur";
+    }
+
+    @Override
+    public int getContainerResId() {
+        return R.id.activity_main_gl_view;
+    }
+
+    @Override
+    public String getImageBaseUrl() {
+        return "http://4dea-development-commonpanos.s3-website.eu-central-1.amazonaws.com/vtour/";
+    }
+
+    @Override
+    public String getJsonBaseUrl() {
+        return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
     }
 }

@@ -1,10 +1,11 @@
-package com.fourdea.a360viewerdemoapp;
+package com.fourdea.a360viewerdemoapp.PanoramaHelpers;
 
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.ViewGroup;
 
+import com.fourdea.a360viewerdemoapp.R;
 import com.fourdea.viewerlibrary.Listeners.ViewerListeners.PanoramaCallBackListener;
 import com.fourdea.viewerlibrary.Presenters.ViewerPresenters.PanoramaHelper;
 
@@ -15,13 +16,15 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
 
     Context context;
 
+    VtourCallBackListener callBackListener;
+
     public MyPanoramaHelper(Context context) {
         super(context);
         this.context = context;
         super.setCallBackListener(this);
     }
 
-    public MyPanoramaHelper(Context context, PanoramaCallBackListener listener){
+    public MyPanoramaHelper(Context context, VtourCallBackListener listener){
         super(context);
         this.context = context;
         super.setCallBackListener(listener);
@@ -41,27 +44,37 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
 
     @Override
     public long getAutoplayDuration() {
+        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
+            return callBackListener.getAutoPlayDuration();
         return 0;
     }
 
     @Override
     public String getTourDataPath() {
-        return "1604/160433";
+        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
+            return callBackListener.getTourDataPath();
+        return "HotelSwaroopvilas_Udaipur";
     }
 
     @Override
     public ViewGroup getContainer() {
+        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
+            return (ViewGroup) ((Activity)context).findViewById(callBackListener.getContainerResId());
         return (ViewGroup) ((Activity)context).findViewById(R.id.activity_main_gl_view);
     }
 
     @Override
     public String getImageBaseUrl() {
-        return "http://cleartrip-4dea-ready4web.s3-website-ap-southeast-1.amazonaws.com/";
+        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
+            return callBackListener.getImageBaseUrl();
+        return "http://4dea-development-commonpanos.s3-website.eu-central-1.amazonaws.com/vtour/";
     }
 
     @Override
     public String getJsonBaseUrl() {
-        return "http://cleartrip-4dea-ready4web.s3-website-ap-southeast-1.amazonaws.com/";
+        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
+            return callBackListener.getJsonBaseUrl();
+        return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
     }
 
 
