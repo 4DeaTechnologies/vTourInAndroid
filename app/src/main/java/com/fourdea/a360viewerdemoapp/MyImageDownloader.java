@@ -28,7 +28,7 @@ public class MyImageDownloader {
     }
 
 
-    protected Bitmap downloadImageWithCaching(final Context ctx, String uri,String shortUrl, int sceneNum, String quality) throws IOException
+    public Bitmap downloadImageWithCaching(String uri,String shortUrl, int sceneNum, String quality) throws IOException
     {
 
         //get file name
@@ -90,7 +90,7 @@ public class MyImageDownloader {
         }
     }
 
-    protected Boolean doesCacheFileExist(int sceneNum, String filename,String shortUrl, String quality)
+    public Boolean doesCacheFileExist(int sceneNum, String filename,String shortUrl, String quality)
     {
         String basePath = Environment.getExternalStorageDirectory()+"/4Dea vTour/.My Tours/" + shortUrl +"/";
 
@@ -121,7 +121,7 @@ public class MyImageDownloader {
         return (cacheFile.exists() && cacheFile.getTotalSpace()>10000);
     }
 
-    protected void cacheBitmap(int sceneNum, Bitmap b, String filename, String shortUrl, String quality) throws IOException
+    public void cacheBitmap(int sceneNum, Bitmap b, String filename, String shortUrl, String quality) throws IOException
     {
         String basePath = Environment.getExternalStorageDirectory() + "/4Dea vTour/.My Tours/";
         File baseDir = new File(basePath);
@@ -166,7 +166,7 @@ public class MyImageDownloader {
         fos.flush();
     }
 
-    protected Bitmap getCachedBitmap(int sceneNum, String filename, String quality, String shortUrl) throws IOException
+    public Bitmap getCachedBitmap(int sceneNum, String filename, String quality, String shortUrl) throws IOException
     {
         String basePath = Environment.getExternalStorageDirectory()+"/4Dea vTour/.My Tours/"+shortUrl+"/";
 

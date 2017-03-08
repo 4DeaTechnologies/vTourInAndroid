@@ -116,7 +116,7 @@ public class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailsAdapter.Ho
                 shortUrl = url.replace("/","-");
                 shortUrl = shortUrl.replace(":","-");
                 MyImageDownloader downloader = new MyImageDownloader(context);
-                bitmap = downloader.downloadImageWithCaching(context, url, shortUrl, sceneNum, "thumb");
+                bitmap = downloader.downloadImageWithCaching(url, shortUrl, sceneNum, "thumb");
             } catch (Exception e) {
                 e.printStackTrace();
             }
