@@ -1,7 +1,9 @@
 package com.fourdea.a360viewerdemoapp.HotelList;
 
 import android.content.Context;
+import android.content.Intent;
 
+import com.fourdea.a360viewerdemoapp.HotelDetails.HotelDetailsActivity;
 import com.fourdea.a360viewerdemoapp.R;
 
 import org.json.JSONArray;
@@ -65,6 +67,11 @@ public class HotelListPresenter implements HotelListAdapter.HotelListAdapterList
 
     @Override
     public void onHotelItemClicked(HotelItemInfo hotelItemInfo) {
-
+        String shortUrl = hotelItemInfo.shortUrl;
+        String title = hotelItemInfo.name;
+        Intent intent = hotelListView.getIntent(HotelDetailsActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("ShortURL", shortUrl);
+        hotelListView.startActivity(intent);
     }
 }

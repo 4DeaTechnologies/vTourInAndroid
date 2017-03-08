@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.fourdea.a360viewerdemoapp.Constants;
 import com.fourdea.a360viewerdemoapp.MyImageDownloader;
 import com.fourdea.a360viewerdemoapp.R;
+import com.fourdea.a360viewerdemoapp.URLUtil;
 
 import java.util.ArrayList;
 
@@ -102,7 +103,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hold
         protected Bitmap doInBackground(Void... voids) {
             Bitmap bitmap = null;
             try {
-                String url = Constants.HOST_ADDRESS_IMAGE+"/"+shortUrl+"/images/MainThumbnail_small.jpg";
+                String url = URLUtil.getThumbnailUrl(shortUrl);
                 MyImageDownloader downloader = new MyImageDownloader(listener.getContext());
                 bitmap = downloader.downloadImageWithCaching(url, shortUrl, 0, "hotel_main_thumb");
             } catch (Exception e) {

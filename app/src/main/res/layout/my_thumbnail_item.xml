@@ -9,6 +9,6 @@
         android:layout_height="100dp"
         android:padding="3dp"
         android:layout_centerInParent="true"
-        android:background="#fd45fe"/>
+        android:background="@color/material_grey_500"/>
 
 </RelativeLayout>

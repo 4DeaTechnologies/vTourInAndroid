@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_hotel_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_grey_200"
+    tools:context="com.fourdea.a360viewerdemoapp.HotelDetails.HotelDetailsActivity">
+
+    <ImageView
+        android:id="@+id/activity_hotel_details_thumb"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@color/material_grey_400"/>
+
+    <TextView
+        android:id="@+id/activity_hotel_details_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_hotel_details_thumb"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Hotel Swaroop Vilas, Udaipur"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_hotel_details_title"
+        android:layout_margin="10dp"
+        android:textColor="@color/material_grey_600"
+        android:textSize="13sp"
+        android:text="@string/dummy_desc_text"/>
+
+    <Button
+        android:id="@+id/activity_hotel_details_book_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/material_grey_500"
+        android:textColor="@color/white"
+        android:text="Book this Hotel"
+        />
+
+</RelativeLayout>

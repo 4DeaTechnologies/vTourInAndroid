@@ -1,6 +1,7 @@
 package com.fourdea.a360viewerdemoapp.HotelList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.RawRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -65,5 +66,10 @@ public class HotelsListActivity extends AppCompatActivity implements HotelListVi
     @Override
     public void setAdapter(HotelListAdapter adapter) {
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public Intent getIntent(Class cls) {
+        return new Intent(this, cls);
     }
 }
