@@ -11,13 +11,18 @@ import android.widget.TextView;
 import com.fourdea.a360viewerdemoapp.Constants;
 import com.fourdea.a360viewerdemoapp.MainActivity;
 import com.fourdea.a360viewerdemoapp.NetworkOperators.ImageDownloader;
+import com.fourdea.a360viewerdemoapp.PanoramaDesignActivities.PanoramaDesign1Activity;
+import com.fourdea.a360viewerdemoapp.PanoramaDesignActivities.PanoramaDesign2Activity;
 import com.fourdea.a360viewerdemoapp.R;
 import com.fourdea.a360viewerdemoapp.URLUtil;
+import com.fourdea.a360viewerdemoapp.ViewerType;
 
 public class HotelDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView title;
     ImageView thumb;
+
+    String shortUrl, titleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +33,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements View.OnCl
 
         Intent intent = getIntent();
 
-        String titleText = intent.getStringExtra("title");
-        String shortUrl = intent.getStringExtra("ShortURL");
+        titleText = intent.getStringExtra("title");
+        shortUrl = intent.getStringExtra("ShortURL");
 
         title.setText(titleText);
 
@@ -57,8 +62,18 @@ public class HotelDetailsActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         if(v == thumb){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            if(Constants.viewerType == ViewerType.DESIGN1) {
+                Intent intent = new Intent(this, PanoramaDesign1Activity.class);
+                intent.putExtra("ShortURL", shortUrl);
+                intent.putExtra("title", titleText);
+                startActivity(intent);
+            }
+            else if(Constants.viewerType == ViewerType.DESIGN2){
+                Intent intent = new Intent(this, PanoramaDesign2Activity.class);
+                intent.putExtra("ShortURL", shortUrl);
+                intent.putExtra("title", titleText);
+                startActivity(intent);
+            }
         }
     }
 }

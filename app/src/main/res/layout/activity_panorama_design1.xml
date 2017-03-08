@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_panorama_design1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fourdea.a360viewerdemoapp.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context="com.fourdea.a360viewerdemoapp.PanoramaDesignActivities.PanoramaDesign1Activity">
 
     <RelativeLayout
-        android:id="@+id/activity_main_gl_view"
+        android:id="@+id/activity_panorama_design1_gl_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#99000000"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Loading..."/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/activity_main_gl_view">
+        android:layout_below="@+id/activity_panorama_design1_gl_view">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,10 +49,10 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/activity_main_recycler"
+        android:id="@+id/activity_panorama_design1_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:background="#999999"/>
 
-</FrameLayout>
+</RelativeLayout>

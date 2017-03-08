@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".HotelList.HotelsListActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -18,8 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HotelDetails.HotelDetailsActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"></activity>
+        <activity
+            android:name=".HotelDetails.HotelDetailsActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity android:name=".PanoramaDesignActivities.PanoramaDesign1Activity" />
+        <activity android:name=".PanoramaDesignActivities.PanoramaDesign2Activity"></activity>
     </application>
 
 </manifest>

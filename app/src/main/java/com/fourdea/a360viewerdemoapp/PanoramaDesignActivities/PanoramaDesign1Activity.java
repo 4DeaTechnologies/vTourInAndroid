@@ -1,29 +1,44 @@
-package com.fourdea.a360viewerdemoapp;
+package com.fourdea.a360viewerdemoapp.PanoramaDesignActivities;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.MyPanoramaHelper;
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.VtourCallBackListener;
+import com.fourdea.a360viewerdemoapp.R;
+import com.fourdea.a360viewerdemoapp.ThumbnailBean;
+import com.fourdea.a360viewerdemoapp.ThumbnailListener;
+import com.fourdea.a360viewerdemoapp.ThumbnailsAdapter;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements VtourCallBackListener, ThumbnailListener {
+public class PanoramaDesign1Activity extends AppCompatActivity implements VtourCallBackListener, ThumbnailListener {
 
     MyPanoramaHelper myPanoramaHelper;
 
     public RecyclerView recyclerView;
+    TextView loadingText;
     boolean stateShow = true, isTourDataLoaded = false;
+    ThumbnailsAdapter adapter;
+
+    String shortUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_panorama_design1);
 
-        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_main_gl_view, this);
+        loadingText = (TextView) findViewById(R.id.loading_text);
+
+        shortUrl = getIntent().getStringExtra("ShortURL");
+
+        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design1_gl_view, this);
         myPanoramaHelper.initialize();
     }
 
@@ -49,8 +64,28 @@ public class MainActivity extends AppCompatActivity implements VtourCallBackList
     }
 
     @Override
+    public long getAutoPlayDuration() {
+        return 0;
+    }
+
+    @Override
+    public String getTourDataPath() {
+        return shortUrl;
+    }
+
+    @Override
+    public String getImageBaseUrl() {
+        return "http://4dea-development-commonpanos.s3-website.eu-central-1.amazonaws.com/vtour/";
+    }
+
+    @Override
+    public String getJsonBaseUrl() {
+        return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
+    }
+
+    @Override
     public void onTourDataLoaded() {
-        recyclerView = (RecyclerView) findViewById(R.id.activity_main_recycler);
+        recyclerView = (RecyclerView) findViewById(R.id.activity_panorama_design1_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         isTourDataLoaded = true;
         int numOfScenes = 0;
@@ -77,8 +112,7 @@ public class MainActivity extends AppCompatActivity implements VtourCallBackList
             }
             mainList.add(bean);
         }
-
-        ThumbnailsAdapter adapter = new ThumbnailsAdapter(this, this, mainList);
+        adapter = new ThumbnailsAdapter(this, this, mainList);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -100,12 +134,13 @@ public class MainActivity extends AppCompatActivity implements VtourCallBackList
 
     @Override
     public void onLowQualityPanoLoaded(int i) {
-
+        loadingText.setVisibility(View.GONE);
     }
 
     @Override
     public void onHighQualityPanoLoaded(int i) {
-
+        loadingText.setVisibility(View.GONE);
+        adapter.setSelected(i);
     }
 
     @Override
@@ -115,12 +150,12 @@ public class MainActivity extends AppCompatActivity implements VtourCallBackList
 
     @Override
     public void onFailedToLoadTourData() {
-
+        loadingText.setText("Failed to load tour data!");
     }
 
     @Override
     public void onFailedToLoadImages() {
-
+        loadingText.setText("Failed to load images!");
     }
 
     @Override
@@ -141,25 +176,5 @@ public class MainActivity extends AppCompatActivity implements VtourCallBackList
     @Override
     public String getThumbUrl(int sceneNum) throws Exception {
         return myPanoramaHelper.getThumbnailUrl(sceneNum);
-    }
-
-    @Override
-    public long getAutoPlayDuration() {
-        return 0;
-    }
-
-    @Override
-    public String getTourDataPath() {
-        return "HotelSwaroopvilas_Udaipur";
-    }
-
-    @Override
-    public String getImageBaseUrl() {
-        return "http://4dea-development-commonpanos.s3-website.eu-central-1.amazonaws.com/vtour/";
-    }
-
-    @Override
-    public String getJsonBaseUrl() {
-        return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
     }
 }

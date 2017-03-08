@@ -14,9 +14,12 @@ import com.fourdea.viewerlibrary.Presenters.ViewerPresenters.PanoramaHelper;
  */
 public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBackListener {
 
+    private final String TAG = "MyPanoramaHelper";
     Context context;
 
     VtourCallBackListener callBackListener;
+
+    int resId;
 
     public MyPanoramaHelper(Context context) {
         super(context);
@@ -24,9 +27,11 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
         super.setCallBackListener(this);
     }
 
-    public MyPanoramaHelper(Context context, VtourCallBackListener listener){
+    public MyPanoramaHelper(Context context, int containerResId, VtourCallBackListener listener){
         super(context);
         this.context = context;
+        this.resId = containerResId;
+        this.callBackListener = listener;
         super.setCallBackListener(listener);
     }
 
@@ -58,9 +63,7 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
 
     @Override
     public ViewGroup getContainer() {
-        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
-            return (ViewGroup) ((Activity)context).findViewById(callBackListener.getContainerResId());
-        return (ViewGroup) ((Activity)context).findViewById(R.id.activity_main_gl_view);
+        return (ViewGroup) ((Activity)context).findViewById(resId);
     }
 
     @Override

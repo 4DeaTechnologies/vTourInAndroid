@@ -12,8 +12,6 @@ public interface VtourCallBackListener extends PanoramaCallBackListener {
 
     String getTourDataPath();
 
-    int getContainerResId();
-
     String getImageBaseUrl();
 
     String getJsonBaseUrl();

@@ -61,6 +61,16 @@ public class ThumbnailsAdapter extends RecyclerView.Adapter<ThumbnailsAdapter.Ho
         return mainList.size();
     }
 
+    public void setSelected(int sceneNum) {
+        for(int i = 0; i < getItemCount(); i++){
+            if(mainList.get(i).sceneNum == sceneNum)
+                mainList.get(i).selected = true;
+            else
+                mainList.get(i).selected = false;
+        }
+        notifyDataSetChanged();
+    }
+
     class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView imageView;

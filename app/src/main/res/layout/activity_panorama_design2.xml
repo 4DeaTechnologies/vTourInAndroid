@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_panorama_design2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fourdea.a360viewerdemoapp.PanoramaDesignActivities.PanoramaDesign2Activity">
+
+
+    <RelativeLayout
+        android:id="@+id/activity_panorama_design2_gl_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#99000000"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Loading..."/>
+
+    <ImageButton
+        android:id="@+id/activity_panorama_design2_previous"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:rotation="180"
+        android:background="#99ffffff"
+        android:src="@drawable/ic_forward_arrow"/>
+
+    <ImageButton
+        android:id="@+id/activity_panorama_design2_next"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:background="#99ffffff"
+        android:src="@drawable/ic_forward_arrow"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:background="@color/material_grey_200">
+
+        <TextView
+            android:id="@+id/activity_panorama_design2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="Hotel Swaroop vilas, Udaipur"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/activity_panorama_design2_title"
+            android:layout_toLeftOf="@+id/activity_panorama_design2_book_button"
+            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text="@string/dummy_desc_text"/>
+
+        <Button
+            android:id="@+id/activity_panorama_design2_book_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/orange_header"
+            android:textColor="@color/white"
+            android:text="Book Hotel" />
+    </RelativeLayout>
+
+</RelativeLayout>
