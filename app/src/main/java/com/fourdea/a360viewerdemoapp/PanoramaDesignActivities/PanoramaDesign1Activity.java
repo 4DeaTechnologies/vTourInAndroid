@@ -7,20 +7,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.fourdea.a360viewerdemoapp.MyApplication;
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.MyPanoramaHelper;
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.VtourCallBackListener;
 import com.fourdea.a360viewerdemoapp.R;
 import com.fourdea.a360viewerdemoapp.ThumbnailBean;
 import com.fourdea.a360viewerdemoapp.ThumbnailListener;
 import com.fourdea.a360viewerdemoapp.ThumbnailsAdapter;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PanoramaDesign1Activity extends AppCompatActivity implements VtourCallBackListener, ThumbnailListener {
 
     MyPanoramaHelper myPanoramaHelper;
+
+    Tracker mTracker;
 
     public RecyclerView recyclerView;
     TextView loadingText;
@@ -33,6 +39,16 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panorama_design1);
+
+        // Obtain the shared Tracker instance.
+        MyApplication application = (MyApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+        mTracker.setScreenName("PanoramaDesign1Activity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Activity create")
+                .setAction("onCreate()")
+                .build());
 
         loadingText = (TextView) findViewById(R.id.loading_text);
 
@@ -81,6 +97,11 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
     @Override
     public String getJsonBaseUrl() {
         return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
+    }
+
+    @Override
+    public Tracker getTracker() {
+        return mTracker;
     }
 
     @Override

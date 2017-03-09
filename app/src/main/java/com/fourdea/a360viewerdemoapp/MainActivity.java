@@ -8,12 +8,17 @@ import android.view.View;
 
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.MyPanoramaHelper;
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.VtourCallBackListener;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements VtourCallBackListener, ThumbnailListener {
 
     MyPanoramaHelper myPanoramaHelper;
+
+    Tracker mTracker;
 
     public RecyclerView recyclerView;
     boolean stateShow = true, isTourDataLoaded = false;
@@ -22,6 +27,16 @@ public class MainActivity extends AppCompatActivity implements VtourCallBackList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Obtain the shared Tracker instance.
+        MyApplication application = (MyApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+        mTracker.setScreenName("MainActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Activity create")
+                .setAction("onCreate()")
+                .build());
 
         myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_main_gl_view, this);
         myPanoramaHelper.initialize();
@@ -161,5 +176,10 @@ public class MainActivity extends AppCompatActivity implements VtourCallBackList
     @Override
     public String getJsonBaseUrl() {
         return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
+    }
+
+    @Override
+    public Tracker getTracker() {
+        return mTracker;
     }
 }

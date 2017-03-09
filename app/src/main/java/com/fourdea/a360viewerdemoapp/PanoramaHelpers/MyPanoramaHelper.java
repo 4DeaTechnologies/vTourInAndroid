@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import com.fourdea.a360viewerdemoapp.R;
 import com.fourdea.viewerlibrary.Listeners.ViewerListeners.PanoramaCallBackListener;
 import com.fourdea.viewerlibrary.Presenters.ViewerPresenters.PanoramaHelper;
+import com.google.android.gms.analytics.HitBuilders;
+
+import java.util.Date;
 
 /**
  * Created by dhrumil on 8/4/2016.
@@ -20,6 +23,8 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
     VtourCallBackListener callBackListener;
 
     int resId;
+
+    int previousScene = 0;
 
     public MyPanoramaHelper(Context context) {
         super(context);
@@ -80,6 +85,21 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
         return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
     }
 
+    Date startTime = new Date();
+    @Override
+    public void changeScene(int sceneNum) {
+        super.changeScene(sceneNum);
+        Date endTime = new Date();
+        long timeSpent = endTime.getTime() - startTime.getTime();
+        callBackListener.getTracker().send(new HitBuilders.TimingBuilder()
+                .setCategory("Time spent - tour "+getPureShortUrl())
+                .setVariable("Spent time in scene number: "+previousScene)
+                .setLabel("time spent in scene number "+previousScene)
+                .setValue(timeSpent)
+                .build());
+        previousScene = sceneNum;
+        startTime = new Date();
+    }
 
     @Override
     public void onTourDataLoaded() {
@@ -129,6 +149,16 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
     @Override
     public void onArrowClicked() {
         Log.i("MyPanoHelper", "unit testing onArrowClicked() ");
+        Date endTime = new Date();
+        long timeSpent = endTime.getTime() - startTime.getTime();
+        callBackListener.getTracker().send(new HitBuilders.TimingBuilder()
+                .setCategory("Time spent in scene")
+                .setVariable("Tour "+getPureShortUrl())
+                .setLabel("Scene: "+getSceneName(previousScene))
+                .setValue(timeSpent)
+                .build());
+        previousScene = getCurrentSceneNum();
+        startTime = new Date();
     }
 
     @Override

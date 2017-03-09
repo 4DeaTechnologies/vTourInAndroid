@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.fourdea.a360viewerdemoapp.MyApplication;
 import com.fourdea.a360viewerdemoapp.R;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,12 +21,15 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.util.Date;
 
 public class HotelsListActivity extends AppCompatActivity implements HotelListViewListener {
 
     RecyclerView recyclerView;
 
     HotelListPresenter presenter;
+
+    Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,18 @@ public class HotelsListActivity extends AppCompatActivity implements HotelListVi
 
         initializeViews();
 
+        // Obtain the shared Tracker instance.
+        MyApplication application = (MyApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+        mTracker.setScreenName("HotelListActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Activity create")
+                .setAction("onCreate()")
+                .setLabel("Time")
+                .setValue(new Date().getTime())
+                .build());
+
         presenter = new HotelListPresenter(this);
         presenter.initialize();
     }
@@ -39,6 +57,17 @@ public class HotelsListActivity extends AppCompatActivity implements HotelListVi
     private void initializeViews() {
         recyclerView = (RecyclerView) findViewById(R.id.activity_hotels_list_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
     }
 
     @Override

@@ -7,15 +7,22 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.fourdea.a360viewerdemoapp.MyApplication;
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.MyPanoramaHelper;
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.VtourCallBackListener;
 import com.fourdea.a360viewerdemoapp.R;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import org.w3c.dom.Text;
+
+import java.util.Date;
 
 public class PanoramaDesign2Activity extends AppCompatActivity implements VtourCallBackListener, View.OnClickListener {
 
     MyPanoramaHelper myPanoramaHelper;
+
+    Tracker mTracker;
 
     boolean stateShow = true, isTourDataLoaded = false;
 
@@ -29,6 +36,16 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panorama_design2);
+
+        // Obtain the shared Tracker instance.
+        MyApplication application = (MyApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+        mTracker.setScreenName("PanoramaDesign2Activity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Activity create")
+                .setAction("onCreate()")
+                .build());
 
         initializeViews();
 
@@ -98,6 +115,11 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
     @Override
     public String getJsonBaseUrl() {
         return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
+    }
+
+    @Override
+    public Tracker getTracker() {
+        return mTracker;
     }
 
     @Override
