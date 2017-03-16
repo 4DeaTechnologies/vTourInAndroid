@@ -15,7 +15,8 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".HotelList.HotelsListActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,11 +25,14 @@
         </activity>
         <activity
             android:name=".HotelDetails.HotelDetailsActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:screenOrientation="sensorPortrait"/>
         <activity android:name=".PanoramaDesignActivities.PanoramaDesign1Activity"
-            android:label="Design 1"/>
+            android:label="Design 1"
+            android:screenOrientation="sensorPortrait"/>
         <activity android:name=".PanoramaDesignActivities.PanoramaDesign2Activity"
-            android:label="Design 2"></activity>
+            android:label="Design 2"
+            android:screenOrientation="sensorPortrait"></activity>
     </application>
 
 </manifest>
