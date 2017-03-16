@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "96156934889",
+    "project_id": "firebase-viewer-demo-app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96156934889:android:b26fe5dd6dba8985",
+        "android_client_info": {
+          "package_name": "com.fourdea.a360viewerdemoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2l4Jzgb7854eEXn06_nUoKtibhncFPv4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-93333171-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
