@@ -117,12 +117,12 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
 
     @Override
     public String getImageBaseUrl() {
-        return "http://4dea-development-commonpanos.s3-website.eu-central-1.amazonaws.com/vtour/";
+        return Constants.HOST_ADDRESS_IMAGE;
     }
 
     @Override
     public String getJsonBaseUrl() {
-        return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
+        return Constants.HOST_ADDRESS_JSON;
     }
 
     @Override
