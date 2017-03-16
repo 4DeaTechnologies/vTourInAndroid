@@ -21,33 +21,6 @@
         android:textSize="16sp"
         android:text="Loading..."/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/activity_panorama_design1_gl_view">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start"
-            android:onClick="start"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stop"
-            android:onClick="stop"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CardBoard"
-            android:onClick="cardBoard"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gyro"
-            android:onClick="gyroToggle"
-            />
-    </LinearLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activity_panorama_design1_recycler_view"
         android:layout_width="match_parent"

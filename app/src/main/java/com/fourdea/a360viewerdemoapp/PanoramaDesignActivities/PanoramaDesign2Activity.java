@@ -2,11 +2,14 @@ package com.fourdea.a360viewerdemoapp.PanoramaDesignActivities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.fourdea.a360viewerdemoapp.Constants;
 import com.fourdea.a360viewerdemoapp.MyApplication;
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.MyPanoramaHelper;
 import com.fourdea.a360viewerdemoapp.PanoramaHelpers.VtourCallBackListener;
@@ -94,6 +97,42 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if(Constants.SHOW_CARDBOARD_AND_GYRO) {
+            getMenuInflater().inflate(R.menu.menu_panorama_design2_activity, menu);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.menu_panorama_design2_gyro){
+            gyroToggle();
+        }
+        else if(id == R.id.menu_panorama_design2_cardBoard){
+            cardBoard();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void cardBoard(){
+        myPanoramaHelper.goToCardBoardMode();
+    }
+
+    public void gyroToggle(){
+        if(myPanoramaHelper.isGyroOn()){
+            myPanoramaHelper.turnGyroOff();
+        }
+        else{
+            myPanoramaHelper.turnGyroOn();
         }
     }
 

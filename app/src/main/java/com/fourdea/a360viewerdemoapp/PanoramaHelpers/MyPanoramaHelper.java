@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.ViewGroup;
 
+import com.fourdea.a360viewerdemoapp.Constants;
 import com.fourdea.a360viewerdemoapp.R;
 import com.fourdea.viewerlibrary.Listeners.ViewerListeners.PanoramaCallBackListener;
 import com.fourdea.viewerlibrary.Presenters.ViewerPresenters.PanoramaHelper;
@@ -75,14 +76,14 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
     public String getImageBaseUrl() {
         if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
             return callBackListener.getImageBaseUrl();
-        return "http://4dea-development-commonpanos.s3-website.eu-central-1.amazonaws.com/vtour/";
+        return Constants.HOST_ADDRESS_IMAGE;
     }
 
     @Override
     public String getJsonBaseUrl() {
         if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
             return callBackListener.getJsonBaseUrl();
-        return "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour/";
+        return Constants.HOST_ADDRESS_JSON;
     }
 
     Date startTime = new Date();

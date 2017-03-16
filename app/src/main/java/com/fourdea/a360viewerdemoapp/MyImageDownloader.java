@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,7 +34,9 @@ public class MyImageDownloader {
 
         //get file name
         String tempFilename = uri.substring(uri.lastIndexOf('/') + 1);
-        String filename = tempFilename.substring(0,1).toUpperCase() + tempFilename.substring(1);
+        String filename = tempFilename;
+
+        Log.i(TAG, "downloading image "+uri);
 
 //        Log.d(TAG, "Checking if file is cached: " + shortUrl+" "+sceneNum+" " +filename);
 
@@ -92,30 +95,9 @@ public class MyImageDownloader {
 
     public Boolean doesCacheFileExist(int sceneNum, String filename,String shortUrl, String quality)
     {
-        String basePath = Environment.getExternalStorageDirectory()+"/4Dea vTour/.My Tours/" + shortUrl +"/";
-
-        String sceneFolderPath = basePath + sceneNum +"/";
-
-        String qualityFolderPath = sceneFolderPath + quality +"/";
-
-        File fileDir = new File(basePath);
-        if (!fileDir.exists()){
-            fileDir.mkdir();
-        }
-
-        File sceneDir = new File(sceneFolderPath);
-        if(!sceneDir.exists()){
-            sceneDir.mkdir();
-        }
-
-        File qualityDir = new File(qualityFolderPath);
-        if(!qualityDir.exists()){
-            qualityDir.mkdir();
-        }
-
 //        File cacheDir = ctx.getCacheDir();
 
-        filename = sceneNum+quality+filename;
+        filename = shortUrl+sceneNum+quality+filename;
         File cacheFile = new File(context.getCacheDir(), filename);
 
         return (cacheFile.exists() && cacheFile.getTotalSpace()>10000);
@@ -123,29 +105,6 @@ public class MyImageDownloader {
 
     public void cacheBitmap(int sceneNum, Bitmap b, String filename, String shortUrl, String quality) throws IOException
     {
-        String basePath = Environment.getExternalStorageDirectory() + "/4Dea vTour/.My Tours/";
-        File baseDir = new File(basePath);
-        if(!baseDir.exists()){
-            baseDir.mkdir();
-        }
-
-        String tourPath = basePath + "/" + shortUrl +"/";
-        File tourDir = new File(tourPath);
-        if(!tourDir.exists()){
-            tourDir.mkdir();
-        }
-
-        String scenePath = tourPath + "/" + sceneNum +"/";
-        File sceneDir = new File(scenePath);
-        if(!sceneDir.exists()){
-            sceneDir.mkdir();
-        }
-
-        String qualityPath = scenePath + "/" + quality +"/";
-        File qualityDir = new File(qualityPath);
-        if(!qualityDir.exists()){
-            qualityDir.mkdir();
-        }
 
 //        File cacheDir = ctx.getCacheDir();
 
@@ -168,9 +127,7 @@ public class MyImageDownloader {
 
     public Bitmap getCachedBitmap(int sceneNum, String filename, String quality, String shortUrl) throws IOException
     {
-        String basePath = Environment.getExternalStorageDirectory()+"/4Dea vTour/.My Tours/"+shortUrl+"/";
-
-        String filePath = basePath+ sceneNum +"/"+quality+ "/" +filename;
+        String filePath = "";
         filePath = context.getCacheDir().getAbsolutePath()+"/"+ shortUrl+sceneNum+quality+filename;
 
         return getBitmapFromPath(2f, filePath);
