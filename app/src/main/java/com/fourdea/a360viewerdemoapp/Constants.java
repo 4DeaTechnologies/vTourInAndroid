@@ -10,6 +10,8 @@ public class Constants {
 
     public static final boolean SHOW_CARDBOARD_AND_GYRO = true;
 
+    public static final boolean AUTOPLAY = true;
+
     public static final String HOST_ADDRESS_IMAGE = "http://4dea-development-commonpanos.s3-website.eu-central-1.amazonaws.com/vtour";
 
     public static final String HOST_ADDRESS_JSON = "http://testingpurpose4dea.s3-website.eu-central-1.amazonaws.com/vtour";

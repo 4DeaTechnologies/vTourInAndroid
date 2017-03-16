@@ -44,6 +44,9 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
     @Override
     public void initialize() {
         super.initialize();
+        if(!Constants.AUTOPLAY){
+            stopAutoPlay();
+        }
     }
 
 //    @Override
