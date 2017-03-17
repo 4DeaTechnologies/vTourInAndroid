@@ -43,7 +43,7 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
 
         myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design2_gl_view
                 , "HotelSwaroopvilas_Udaipur", this);
-        myPanoramaHelper.initialize();
+//        myPanoramaHelper.initialize();
     }
 
     public void initializeViews(){

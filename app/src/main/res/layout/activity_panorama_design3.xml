@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/activity_panorama_design3_gl_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#e1e1e1"/>
 
     <TextView
         android:id="@+id/loading_text"
