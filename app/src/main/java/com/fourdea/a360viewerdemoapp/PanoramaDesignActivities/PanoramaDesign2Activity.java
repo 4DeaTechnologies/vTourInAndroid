@@ -25,10 +25,6 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
 
     MyPanoramaHelper myPanoramaHelper;
 
-    Tracker mTracker;
-
-    boolean stateShow = true, isTourDataLoaded = false;
-
     TextView title, loadingText;
     Button bookButton;
     ImageButton previousButton, nextButton;
@@ -39,16 +35,6 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panorama_design2);
-
-        // Obtain the shared Tracker instance.
-        MyApplication application = (MyApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        mTracker.setScreenName("PanoramaDesign2Activity");
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-        mTracker.send(new HitBuilders.EventBuilder()
-                .setCategory("Activity create")
-                .setAction("onCreate()")
-                .build());
 
         initializeViews();
 
@@ -139,7 +125,7 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
 
     @Override
     public Tracker getTracker() {
-        return mTracker;
+        return null;
     }
 
     @Override

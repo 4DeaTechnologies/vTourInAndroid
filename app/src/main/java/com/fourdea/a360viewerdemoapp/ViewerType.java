@@ -5,5 +5,9 @@ package com.fourdea.a360viewerdemoapp;
  */
 
 public enum ViewerType {
-    DESIGN1, DESIGN2, DESIGN3
+    DESIGN1,//With thumbnail design
+    DESIGN2,//next previous arrow buttons design
+    DESIGN3 //minimum design
+
+
 }

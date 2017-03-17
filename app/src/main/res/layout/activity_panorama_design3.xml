@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.fourdea.a360viewerdemoapp.PanoramaDesignActivities.PanoramaDesign3Activity">
 
-    <RelativeLayout
-        android:id="@+id/activity_panorama_design3_gl_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <TextView
         android:id="@+id/loading_text"
         android:layout_width="wrap_content"
@@ -20,5 +15,12 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:text="Loading..."/>
+
+    <RelativeLayout
+        android:id="@+id/activity_panorama_design3_gl_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99e1e1e1"/>
+
 
 </RelativeLayout>
