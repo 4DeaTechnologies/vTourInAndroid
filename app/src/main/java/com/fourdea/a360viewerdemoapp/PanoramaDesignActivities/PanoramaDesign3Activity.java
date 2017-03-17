@@ -30,7 +30,7 @@ public class PanoramaDesign3Activity extends AppCompatActivity {
 
         shortUrl = getIntent().getStringExtra("ShortURL");
 
-        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design3_gl_view,"HotelSwaroopvilas_Udaipur", null);
+        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design3_gl_view,shortUrl, this);
         myPanoramaHelper.initialize();
     }
 
