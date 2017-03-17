@@ -6,7 +6,7 @@ package com.fourdea.a360viewerdemoapp;
 
 public class Constants {
 
-    public static final ViewerType viewerType = ViewerType.DESIGN2;
+    public static final ViewerType viewerType = ViewerType.DESIGN3;
 
     public static final boolean SHOW_CARDBOARD_AND_GYRO = true;
 

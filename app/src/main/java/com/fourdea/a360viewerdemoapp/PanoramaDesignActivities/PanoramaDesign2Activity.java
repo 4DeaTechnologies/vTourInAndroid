@@ -55,7 +55,8 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
         shortUrl = getIntent().getStringExtra("ShortURL");
         titleText = getIntent().getStringExtra("title");
 
-        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design2_gl_view, this);
+        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design2_gl_view
+                , "HotelSwaroopvilas_Udaipur", this);
         myPanoramaHelper.initialize();
     }
 
@@ -134,26 +135,6 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
         else{
             myPanoramaHelper.turnGyroOn();
         }
-    }
-
-    @Override
-    public long getAutoPlayDuration() {
-        return 0;
-    }
-
-    @Override
-    public String getTourDataPath() {
-        return shortUrl;
-    }
-
-    @Override
-    public String getImageBaseUrl() {
-        return Constants.HOST_ADDRESS_IMAGE;
-    }
-
-    @Override
-    public String getJsonBaseUrl() {
-        return Constants.HOST_ADDRESS_JSON;
     }
 
     @Override

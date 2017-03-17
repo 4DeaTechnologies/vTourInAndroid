@@ -21,6 +21,7 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
     private final String TAG = "MyPanoramaHelper";
     Context context;
 
+    private String shortUrl;
     VtourCallBackListener callBackListener;
 
     int resId;
@@ -33,10 +34,11 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
         super.setCallBackListener(this);
     }
 
-    public MyPanoramaHelper(Context context, int containerResId, VtourCallBackListener listener){
+    public MyPanoramaHelper(Context context, int containerResId, String shortUrl, VtourCallBackListener listener){
         super(context);
         this.context = context;
         this.resId = containerResId;
+        this.shortUrl = shortUrl;
         this.callBackListener = listener;
         super.setCallBackListener(listener);
     }
@@ -58,16 +60,12 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
 
     @Override
     public long getAutoplayDuration() {
-        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
-            return callBackListener.getAutoPlayDuration();
         return 0;
     }
 
     @Override
     public String getTourDataPath() {
-        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
-            return callBackListener.getTourDataPath();
-        return "HotelSwaroopvilas_Udaipur";
+        return shortUrl;
     }
 
     @Override
@@ -77,15 +75,11 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
 
     @Override
     public String getImageBaseUrl() {
-        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
-            return callBackListener.getImageBaseUrl();
         return Constants.HOST_ADDRESS_IMAGE;
     }
 
     @Override
     public String getJsonBaseUrl() {
-        if(callBackListener instanceof VtourCallBackListener && callBackListener != null)
-            return callBackListener.getJsonBaseUrl();
         return Constants.HOST_ADDRESS_JSON;
     }
 
@@ -95,66 +89,68 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
         super.changeScene(sceneNum);
         Date endTime = new Date();
         long timeSpent = endTime.getTime() - startTime.getTime();
-        callBackListener.getTracker().send(new HitBuilders.TimingBuilder()
-                .setCategory("Time spent - tour "+getPureShortUrl())
-                .setVariable("Spent time in scene number: "+previousScene)
-                .setLabel("time spent in scene number "+previousScene)
-                .setValue(timeSpent)
-                .build());
+        if(callBackListener != null && callBackListener.getTracker() != null)
+            callBackListener.getTracker().send(new HitBuilders.TimingBuilder()
+                    .setCategory("Time spent - tour "+getPureShortUrl())
+                    .setVariable("Spent time in scene number: "+previousScene)
+                    .setLabel("time spent in scene number "+previousScene)
+                    .setValue(timeSpent)
+                    .build());
         previousScene = sceneNum;
         startTime = new Date();
     }
 
     @Override
     public void onTourDataLoaded() {
-        Log.i("MyPanoHelper", "unit testing tourDataLoaded()");
+        Log.i(TAG, "tourDataLoaded()");
     }
 
     @Override
     public void onTap() {
-        Log.i("MyPanoHelper", "unit testing onTap()");
+        Log.i(TAG, "onTap()");
     }
 
     @Override
     public void onTouchDown() {
-        Log.i("MyPanoHelper", "unit testing onTouchDown()");
+        Log.i(TAG, "onTouchDown()");
     }
 
     @Override
     public void onTouchUp() {
-        Log.i("MyPanoHelper", "unit testing onTouchUp()");
+        Log.i(TAG, "onTouchUp()");
     }
 
     @Override
     public void onLowQualityPanoLoaded(int sceneNum) {
-        Log.i("MyPanoHelper", "unit testing onLowQualityLoaded");
+        Log.i(TAG, "onLowQualityLoaded");
     }
 
     @Override
     public void onHighQualityPanoLoaded(int sceneNum) {
-        Log.i("MyPanoHelper", "unit testing onHighQualityLoaded");
+        Log.i(TAG, "onHighQualityLoaded");
     }
 
     @Override
     public void onUpdateProgress(float progress) {
-        Log.i("MyPanoHelper", "unit testing updateProgress() "+progress);
+        Log.i(TAG, "updateProgress() "+progress);
     }
 
     @Override
     public void onFailedToLoadTourData() {
-        Log.i("MyPanoHelper", "unit testing failedToLoadTourData() ");
+        Log.i(TAG, "failedToLoadTourData() ");
     }
 
     @Override
     public void onFailedToLoadImages() {
-        Log.i("MyPanoHelper", "unit testing failedToLoadImages() ");
+        Log.i(TAG, "failedToLoadImages() ");
     }
 
     @Override
     public void onArrowClicked() {
-        Log.i("MyPanoHelper", "unit testing onArrowClicked() ");
+        Log.i(TAG, "onArrowClicked() ");
         Date endTime = new Date();
         long timeSpent = endTime.getTime() - startTime.getTime();
+        if(callBackListener != null && callBackListener.getTracker() != null)
         callBackListener.getTracker().send(new HitBuilders.TimingBuilder()
                 .setCategory("Time spent in scene")
                 .setVariable("Tour "+getPureShortUrl())
@@ -167,6 +163,6 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
 
     @Override
     public void autoPlayCompleted() {
-        Log.i("MyPanoHelper", "unit testing autoplay completed");
+        Log.i(TAG, "autoplay completed");
     }
 }

@@ -5,5 +5,5 @@ package com.fourdea.a360viewerdemoapp;
  */
 
 public enum ViewerType {
-    DESIGN1, DESIGN2
+    DESIGN1, DESIGN2, DESIGN3
 }

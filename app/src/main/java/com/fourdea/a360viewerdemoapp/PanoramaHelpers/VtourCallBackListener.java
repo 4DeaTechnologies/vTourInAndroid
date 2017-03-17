@@ -9,13 +9,5 @@ import com.google.android.gms.analytics.Tracker;
 
 public interface VtourCallBackListener extends PanoramaCallBackListener {
 
-    long getAutoPlayDuration();
-
-    String getTourDataPath();
-
-    String getImageBaseUrl();
-
-    String getJsonBaseUrl();
-
     Tracker getTracker();
 }

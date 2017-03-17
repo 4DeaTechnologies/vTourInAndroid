@@ -33,7 +33,7 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
 
     public RecyclerView recyclerView;
     TextView loadingText;
-    boolean stateShow = true, isTourDataLoaded = false;
+    boolean isTourDataLoaded = false;
     ThumbnailsAdapter adapter;
 
     String shortUrl;
@@ -57,7 +57,7 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
 
         shortUrl = getIntent().getStringExtra("ShortURL");
 
-        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design1_gl_view, this);
+        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design1_gl_view, "HotelSwaroopvilas_Udaipur", this);
         myPanoramaHelper.initialize();
     }
 
@@ -103,26 +103,6 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
             cardBoard();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public long getAutoPlayDuration() {
-        return 0;
-    }
-
-    @Override
-    public String getTourDataPath() {
-        return shortUrl;
-    }
-
-    @Override
-    public String getImageBaseUrl() {
-        return Constants.HOST_ADDRESS_IMAGE;
-    }
-
-    @Override
-    public String getJsonBaseUrl() {
-        return Constants.HOST_ADDRESS_JSON;
     }
 
     @Override
