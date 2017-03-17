@@ -29,8 +29,6 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
 
     MyPanoramaHelper myPanoramaHelper;
 
-    Tracker mTracker;
-
     public RecyclerView recyclerView;
     TextView loadingText;
     boolean isTourDataLoaded = false;
@@ -42,16 +40,6 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panorama_design1);
-
-        // Obtain the shared Tracker instance.
-        MyApplication application = (MyApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-        mTracker.setScreenName("PanoramaDesign1Activity");
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-        mTracker.send(new HitBuilders.EventBuilder()
-                .setCategory("Activity create")
-                .setAction("onCreate()")
-                .build());
 
         loadingText = (TextView) findViewById(R.id.loading_text);
 
@@ -107,7 +95,7 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
 
     @Override
     public Tracker getTracker() {
-        return mTracker;
+        return null;
     }
 
     @Override

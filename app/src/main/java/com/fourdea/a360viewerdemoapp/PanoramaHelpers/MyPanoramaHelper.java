@@ -83,21 +83,9 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
         return Constants.HOST_ADDRESS_JSON;
     }
 
-    Date startTime = new Date();
     @Override
     public void changeScene(int sceneNum) {
         super.changeScene(sceneNum);
-        Date endTime = new Date();
-        long timeSpent = endTime.getTime() - startTime.getTime();
-        if(callBackListener != null && callBackListener.getTracker() != null)
-            callBackListener.getTracker().send(new HitBuilders.TimingBuilder()
-                    .setCategory("Time spent - tour "+getPureShortUrl())
-                    .setVariable("Spent time in scene number: "+previousScene)
-                    .setLabel("time spent in scene number "+previousScene)
-                    .setValue(timeSpent)
-                    .build());
-        previousScene = sceneNum;
-        startTime = new Date();
     }
 
     @Override
@@ -148,17 +136,6 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
     @Override
     public void onArrowClicked() {
         Log.i(TAG, "onArrowClicked() ");
-        Date endTime = new Date();
-        long timeSpent = endTime.getTime() - startTime.getTime();
-        if(callBackListener != null && callBackListener.getTracker() != null)
-        callBackListener.getTracker().send(new HitBuilders.TimingBuilder()
-                .setCategory("Time spent in scene")
-                .setVariable("Tour "+getPureShortUrl())
-                .setLabel("Scene: "+getSceneName(previousScene))
-                .setValue(timeSpent)
-                .build());
-        previousScene = getCurrentSceneNum();
-        startTime = new Date();
     }
 
     @Override
