@@ -79,9 +79,11 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
             try{
                 if(myPanoramaHelper.getCurrentSceneNum() == (myPanoramaHelper.getTotalNumOfScenes()-1)){
                     myPanoramaHelper.changeScene(0);
+                    trackSceneChange(0);
                 }
                 else{
                     myPanoramaHelper.changeScene(myPanoramaHelper.getCurrentSceneNum() + 1);
+                    trackSceneChange(myPanoramaHelper.getCurrentSceneNum() + 1);
                 }
             }catch (Exception e){
                 e.printStackTrace();
@@ -91,9 +93,11 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
             try{
                 if(myPanoramaHelper.getCurrentSceneNum() == (0)){
                     myPanoramaHelper.changeScene(myPanoramaHelper.getTotalNumOfScenes() - 1);
+                    trackSceneChange(myPanoramaHelper.getTotalNumOfScenes() - 1);
                 }
                 else{
                     myPanoramaHelper.changeScene(myPanoramaHelper.getCurrentSceneNum() - 1);
+                    trackSceneChange(myPanoramaHelper.getCurrentSceneNum() - 1);
                 }
             }catch (Exception e){
                 e.printStackTrace();
@@ -187,13 +191,30 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
         loadingText.setText("Failed to load images!");
     }
 
+
+    Date startTime = new Date();
+    int previousScene = 0;
     @Override
     public void onArrowClicked() {
-
+        trackSceneChange(myPanoramaHelper.getCurrentSceneNum());
     }
 
     @Override
     public void autoPlayCompleted() {
 
+    }
+
+    private void trackSceneChange(int sceneNum){
+        Date endTime = new Date();
+        long timeSpent = endTime.getTime() - startTime.getTime();
+        if(mTracker != null)
+            mTracker.send(new HitBuilders.TimingBuilder()
+                    .setCategory("Time spent - tour "+myPanoramaHelper.getPureShortUrl())
+                    .setVariable("Spent time in scene number: "+previousScene)
+                    .setLabel("time spent in scene number "+previousScene)
+                    .setValue(timeSpent)
+                    .build());
+        previousScene = sceneNum;
+        startTime = new Date();
     }
 }

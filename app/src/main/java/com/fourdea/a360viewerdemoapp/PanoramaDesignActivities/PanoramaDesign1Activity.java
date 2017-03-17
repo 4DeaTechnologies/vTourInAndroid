@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -187,7 +188,17 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
 
     @Override
     public void onArrowClicked() {
-
+        Date endTime = new Date();
+        long timeSpent = endTime.getTime() - startTime.getTime();
+        if(mTracker != null)
+            mTracker.send(new HitBuilders.TimingBuilder()
+                    .setCategory("Time spent - tour "+myPanoramaHelper.getPureShortUrl())
+                    .setVariable("Spent time in scene number: "+previousScene)
+                    .setLabel("time spent in scene number "+previousScene)
+                    .setValue(timeSpent)
+                    .build());
+        previousScene = myPanoramaHelper.getCurrentSceneNum();
+        startTime = new Date();
     }
 
     @Override
@@ -195,9 +206,22 @@ public class PanoramaDesign1Activity extends AppCompatActivity implements VtourC
 
     }
 
+    Date startTime = new Date();
+    int previousScene = 0;
     @Override
     public void onThumbnailClicked(int sceneNum, String sceneName) throws Exception {
         myPanoramaHelper.changeScene(sceneNum);
+        Date endTime = new Date();
+        long timeSpent = endTime.getTime() - startTime.getTime();
+        if(mTracker != null)
+            mTracker.send(new HitBuilders.TimingBuilder()
+                    .setCategory("Time spent - tour "+myPanoramaHelper.getPureShortUrl())
+                    .setVariable("Spent time in scene number: "+previousScene)
+                    .setLabel("time spent in scene number "+previousScene)
+                    .setValue(timeSpent)
+                    .build());
+        previousScene = sceneNum;
+        startTime = new Date();
     }
 
     @Override
