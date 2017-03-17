@@ -35,7 +35,7 @@ public class PanoramaDesign3Activity extends AppCompatActivity implements VtourC
 
         shortUrl = getIntent().getStringExtra("ShortURL");
 
-        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design3_gl_view,"HotelSwaroopvilas_Udaipur", this);
+        myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design3_gl_view,shortUrl, this);
         myPanoramaHelper.initialize();
     }
 

@@ -42,7 +42,7 @@ public class PanoramaDesign2Activity extends AppCompatActivity implements VtourC
         titleText = getIntent().getStringExtra("title");
 
         myPanoramaHelper = new MyPanoramaHelper(this, R.id.activity_panorama_design2_gl_view
-                , "HotelSwaroopvilas_Udaipur", this);
+                , shortUrl, this);
         myPanoramaHelper.initialize();
     }
 
