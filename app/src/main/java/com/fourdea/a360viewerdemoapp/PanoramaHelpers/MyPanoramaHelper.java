@@ -16,7 +16,7 @@ import java.util.Date;
 /**
  * Created by dhrumil on 8/4/2016.
  */
-public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBackListener {
+public class MyPanoramaHelper extends PanoramaHelper {
 
     private final String TAG = "MyPanoramaHelper";
     Context context;
@@ -31,7 +31,7 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
     public MyPanoramaHelper(Context context) {
         super(context);
         this.context = context;
-        super.setCallBackListener(this);
+        super.setCallBackListener(null);
     }
 
     public MyPanoramaHelper(Context context, int containerResId, String shortUrl, VtourCallBackListener listener){
@@ -81,65 +81,5 @@ public class MyPanoramaHelper extends PanoramaHelper implements PanoramaCallBack
     @Override
     public String getJsonBaseUrl() {
         return Constants.HOST_ADDRESS_JSON;
-    }
-
-    @Override
-    public void changeScene(int sceneNum) {
-        super.changeScene(sceneNum);
-    }
-
-    @Override
-    public void onTourDataLoaded() {
-        Log.i(TAG, "tourDataLoaded()");
-    }
-
-    @Override
-    public void onTap() {
-        Log.i(TAG, "onTap()");
-    }
-
-    @Override
-    public void onTouchDown() {
-        Log.i(TAG, "onTouchDown()");
-    }
-
-    @Override
-    public void onTouchUp() {
-        Log.i(TAG, "onTouchUp()");
-    }
-
-    @Override
-    public void onLowQualityPanoLoaded(int sceneNum) {
-        Log.i(TAG, "onLowQualityLoaded");
-    }
-
-    @Override
-    public void onHighQualityPanoLoaded(int sceneNum) {
-        Log.i(TAG, "onHighQualityLoaded");
-    }
-
-    @Override
-    public void onUpdateProgress(float progress) {
-        Log.i(TAG, "updateProgress() "+progress);
-    }
-
-    @Override
-    public void onFailedToLoadTourData() {
-        Log.i(TAG, "failedToLoadTourData() ");
-    }
-
-    @Override
-    public void onFailedToLoadImages() {
-        Log.i(TAG, "failedToLoadImages() ");
-    }
-
-    @Override
-    public void onArrowClicked() {
-        Log.i(TAG, "onArrowClicked() ");
-    }
-
-    @Override
-    public void autoPlayCompleted() {
-        Log.i(TAG, "autoplay completed");
     }
 }
