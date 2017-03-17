@@ -35,7 +35,8 @@
             android:name=".PanoramaDesignActivities.PanoramaDesign2Activity"
             android:label="Design 2"
             android:screenOrientation="sensorPortrait" />
-        <activity android:name=".PanoramaDesignActivities.PanoramaDesign3Activity"></activity>
+        <activity android:name=".PanoramaDesignActivities.PanoramaDesign3Activity"
+            android:label="Design 3"/>
     </application>
 
 </manifest>
