@@ -48,10 +48,10 @@ public class PanoramaDesign3Activity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.menu_panorama_design1_gyro){
+        if(id == R.id.menu_panorama_design3_gyro){
             gyroToggle();
         }
-        else if(id == R.id.menu_panorama_design1_cardBoard){
+        else if(id == R.id.menu_panorama_design3_cardBoard){
             cardBoard();
         }
         return super.onOptionsItemSelected(item);
