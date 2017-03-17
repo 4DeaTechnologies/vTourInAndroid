@@ -52,6 +52,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hold
     public void onBindViewHolder(Holder holder, int position) {
         HotelItemInfo hotel = mainList.get(position);
 
+        holder.title.setText(hotel.name);
         if(!hotel.thumbnailSet){
             new ImageSetterTask(hotel.shortUrl, holder.thumb).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             hotel.thumbnailSet = true;
